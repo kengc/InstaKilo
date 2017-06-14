@@ -59,18 +59,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EF-Mh-alp">
-                                            <rect key="frame" x="158" y="13" width="59" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EF-Mh-alp">
+                                            <rect key="frame" x="104" y="13" width="141" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="0EF-Mh-alp" secondAttribute="trailing" constant="122" id="0A1-0z-QTu"/>
                                         <constraint firstItem="0EF-Mh-alp" firstAttribute="top" secondItem="scx-Uj-HiL" secondAttribute="topMargin" constant="5" id="Bda-tK-SBD"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="0EF-Mh-alp" secondAttribute="bottom" constant="5" id="Erc-qh-w1d"/>
-                                        <constraint firstItem="0EF-Mh-alp" firstAttribute="leading" secondItem="scx-Uj-HiL" secondAttribute="leadingMargin" constant="150" id="cgh-8z-sPI"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="0EF-Mh-alp" secondAttribute="trailing" constant="150" id="eHK-JL-0q6"/>
+                                        <constraint firstItem="0EF-Mh-alp" firstAttribute="leading" secondItem="scx-Uj-HiL" secondAttribute="leadingMargin" constant="96" id="P5A-e5-ZwJ"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="sectionLabel" destination="0EF-Mh-alp" id="dMi-um-5gl"/>
@@ -96,18 +96,22 @@
                             <rect key="frame" x="112.5" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="First"/>
-                                <segment title="Second"/>
+                                <segment title="Subject"/>
+                                <segment title="Location"/>
                             </segments>
+                            <connections>
+                                <action selector="segmentedControlChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="DPL-XK-Eis"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="FOO-uz-fhs" id="pic-Bs-9de"/>
+                        <outlet property="segmentedControl" destination="RqH-ai-4CC" id="YVY-RC-BlE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="490" y="0.0"/>
+            <point key="canvasLocation" x="488.80000000000001" y="-0.44977511244377816"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vvx-gT-6KO">

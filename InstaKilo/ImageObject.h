@@ -17,7 +17,10 @@
 
 -(instancetype)initObjectWithImage:(UIImage *)image subject:(NSString *)subject andLocation:(NSString *)location;
 
-+(NSArray*)sortImageObjectsBySubject:(NSArray*)imageObjects;
-+(NSArray*)getUniqueSubjects:(NSArray*)imageObjects;
++(NSMutableArray *)extractSubjects:(NSArray *)imageObjects;
++(NSMutableArray *)SortImageBySubject:(NSArray *)imageObjects;
+
++(NSMutableArray *)SortImageByLocation:(NSArray *)imageObjects;
++(NSMutableArray *)extractLocation:(NSArray *)imageObjects;
 
 @end

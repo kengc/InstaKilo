@@ -27,6 +27,7 @@ typedef enum ImageObjectSortOrder{
 
 @property (nonatomic) ImageObjectSortOrder sort;
 @property (nonatomic) NSArray* sortedData;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
 
@@ -41,15 +42,15 @@ typedef enum ImageObjectSortOrder{
     self.subjects = @[@"Synth", @"Bike", @"Cat"];
     
     self.photos = @[
-                        [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"ps3100.jpg"] subject:@"synth" andLocation:@"Vancouver"],
-                        [[ImageObject alloc]initObjectWithImage:[UIImage imageNamed:@"GRP_Synth_A8"] subject:@"synth" andLocation:@"Vancouver"],
+                        [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"ps3100.jpg"] subject:@"synth" andLocation:@"Japan"],
+                        [[ImageObject alloc]initObjectWithImage:[UIImage imageNamed:@"GRP_Synth_A8"] subject:@"synth" andLocation:@"Japan"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"synthi100.jpg"] subject:@"synth" andLocation:@"Vancouver"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"2_3pRwlgM"] subject:@"bike" andLocation:@"Squamish"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"intestinal"] subject:@"bike" andLocation:@"Squamish"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"trails"] subject:@"bike" andLocation:@"Squamish"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"cat2"] subject:@"cat" andLocation:@"Japan"],
-                        [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"maxresdefault-1"] subject:@"cat" andLocation:@"Japan"],
-                        [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"maxresdefault"] subject:@"cat" andLocation:@"Japan"],
+                        [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"maxresdefault-1"] subject:@"cat" andLocation:@"Vancouver"],
+                        [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"maxresdefault"] subject:@"cat" andLocation:@"Squamish"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"korg-ps3200"] subject:@"synth" andLocation:@"Vancouver"]];
     
     self.collectionView.allowsMultipleSelection = YES;
@@ -59,13 +60,14 @@ typedef enum ImageObjectSortOrder{
     self.sort = ImageObjectSortOrderSubject;
     //call sortData so we can sort based on type of sort
     self.sortedData = [self sortData];
+    //[ImageObject SortImageBySubject:self.photos];
 }
 
 -(NSArray*)sortData{
     if (self.sort == ImageObjectSortOrderSubject){
-        return [ImageObject sortImageObjectsBySubject:self.photos];
+        return [ImageObject SortImageBySubject:self.photos];
     } else {
-        //return [ImageObject sortImageObjectsByLocation:self.photos];
+        return [ImageObject SortImageByLocation:self.photos];
         return nil;
     }
 }
@@ -87,8 +89,6 @@ typedef enum ImageObjectSortOrder{
     //we want to deque the instance of the view that;s being passed in, in this case 'collectionView'. So deqeu it
     PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell" forIndexPath:indexPath];
     
-    //if current subject is synth then check and display only synth
-    //if current subject is cat then display only cat
     
     //ImageObject *imageObject = self.photos[indexPath.row];
     
@@ -98,12 +98,7 @@ typedef enum ImageObjectSortOrder{
     
     cell.imageViewCell.image = imageObject.image;
 
-    
-    //no need for loop since this function is called as many times as there are items in array.count
-  
- 
-   // cell.imageViewCell.image = imageObject.image;
-    
+
     return cell;
 }
 
@@ -119,10 +114,16 @@ typedef enum ImageObjectSortOrder{
         
         //self.currentSubject = [self.subjects objectAtIndex:indexPath.section];
         
+         ImageObject *imageObject = self.sortedData[indexPath.section][indexPath.row];
+        
+        if(self.sort == ImageObjectSortOrderSubject){
+            headerView.sectionLabel.text = imageObject.subject;
+        }
+        if(self.sort == ImageObjectSortOrderLocation){
+            headerView.sectionLabel.text = imageObject.location;
+        }
     
         NSLog(@"indexPath: %@ row: %ld", indexPath, (long)indexPath.section);
-        
-        headerView.sectionLabel.text = [self.subjects objectAtIndex:indexPath.section];
         
         reusableview = headerView;
     }
@@ -134,6 +135,18 @@ typedef enum ImageObjectSortOrder{
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)segmentedControlChange:(id)sender {
+    
+    if(self.segmentedControl.selectedSegmentIndex == 0){
+        self.sort = ImageObjectSortOrderSubject;
+        self.sortedData = [self sortData];
+        [self.collectionView reloadData];
+    } else{
+        self.sort = ImageObjectSortOrderLocation;
+        self.sortedData = [self sortData];
+        [self.collectionView reloadData];
+    }
 }
 
 
