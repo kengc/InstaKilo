@@ -15,6 +15,7 @@
 		735A832C1EF0E542008A35B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735A832A1EF0E542008A35B8 /* LaunchScreen.storyboard */; };
 		735A83351EF0EA63008A35B8 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735A83341EF0EA63008A35B8 /* PhotoCollectionViewCell.m */; };
 		735A83381EF1895C008A35B8 /* ImageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 735A83371EF1895C008A35B8 /* ImageObject.m */; };
+		735A833B1EF1C499008A35B8 /* PhotoCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 735A833A1EF1C499008A35B8 /* PhotoCollectionReusableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		735A83341EF0EA63008A35B8 /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		735A83361EF1895C008A35B8 /* ImageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageObject.h; sourceTree = "<group>"; };
 		735A83371EF1895C008A35B8 /* ImageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageObject.m; sourceTree = "<group>"; };
+		735A83391EF1C499008A35B8 /* PhotoCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionReusableView.h; sourceTree = "<group>"; };
+		735A833A1EF1C499008A35B8 /* PhotoCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionReusableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				735A83231EF0E542008A35B8 /* ViewController.m */,
 				735A83361EF1895C008A35B8 /* ImageObject.h */,
 				735A83371EF1895C008A35B8 /* ImageObject.m */,
+				735A83391EF1C499008A35B8 /* PhotoCollectionReusableView.h */,
+				735A833A1EF1C499008A35B8 /* PhotoCollectionReusableView.m */,
 				735A83331EF0EA63008A35B8 /* PhotoCollectionViewCell.h */,
 				735A83341EF0EA63008A35B8 /* PhotoCollectionViewCell.m */,
 				735A83251EF0E542008A35B8 /* Main.storyboard */,
@@ -165,6 +170,7 @@
 				735A83351EF0EA63008A35B8 /* PhotoCollectionViewCell.m in Sources */,
 				735A83211EF0E542008A35B8 /* AppDelegate.m in Sources */,
 				735A831E1EF0E542008A35B8 /* main.m in Sources */,
+				735A833B1EF1C499008A35B8 /* PhotoCollectionReusableView.m in Sources */,
 				735A83381EF1895C008A35B8 /* ImageObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

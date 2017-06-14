@@ -9,11 +9,14 @@
 #import "ViewController.h"
 #import "ImageObject.h"
 #import "PhotoCollectionViewCell.h"
+#import "PhotoCollectionReusableView.h"
+
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSArray* photos;
+@property (nonatomic) NSArray *subjects;
 
 @end
 
@@ -23,6 +26,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    
+    self.subjects = @[@"Synth", @"Bike", @"Cat"];
     
     self.photos = @[
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"ps3100.jpg"] subject:@"synth" andLocation:@"Vancouver"],
@@ -35,11 +40,13 @@
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"maxresdefault-1"] subject:@"cat" andLocation:@"Japan"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"maxresdefault"] subject:@"cat" andLocation:@"Japan"],
                         [[ImageObject alloc] initObjectWithImage:[UIImage imageNamed:@"korg-ps3200"] subject:@"synth" andLocation:@"Vancouver"]];
+    
+    self.collectionView.allowsMultipleSelection = YES;
 
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return self.subjects.count;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -58,6 +65,28 @@
     
     return cell;
 }
+
+//this reuses a view (header view with label on it)
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    //////////////
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        
+        PhotoCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        //NSString *title = [[NSString alloc]initWithFormat:@"Recipe Group #%li", indexPath.section + 1];
+        
+    
+        NSLog(@"indexPath: %@ row: %ld", indexPath, (long)indexPath.section);
+        
+        headerView.sectionLabel.text = [self.subjects objectAtIndex:indexPath.section];
+        
+        reusableview = headerView;
+    }
+    
+    return reusableview;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

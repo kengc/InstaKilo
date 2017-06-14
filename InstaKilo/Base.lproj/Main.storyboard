@@ -40,12 +40,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UEW-x6-yV6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="90"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="UEW-x6-yV6" secondAttribute="bottom" id="Cmz-2l-Jxe"/>
+                                            <constraint firstAttribute="bottom" secondItem="UEW-x6-yV6" secondAttribute="bottom" id="RB8-K2-blN"/>
                                             <constraint firstAttribute="trailing" secondItem="UEW-x6-yV6" secondAttribute="trailing" id="WVk-7H-fbJ"/>
                                             <constraint firstItem="UEW-x6-yV6" firstAttribute="leading" secondItem="x8A-9B-DlG" secondAttribute="leading" id="euh-6p-LPX"/>
                                             <constraint firstItem="UEW-x6-yV6" firstAttribute="top" secondItem="x8A-9B-DlG" secondAttribute="top" id="j4v-V7-dDM"/>
@@ -55,7 +55,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="scx-Uj-HiL">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="scx-Uj-HiL" customClass="PhotoCollectionReusableView">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -72,6 +72,9 @@
                                         <constraint firstItem="0EF-Mh-alp" firstAttribute="leading" secondItem="scx-Uj-HiL" secondAttribute="leadingMargin" constant="150" id="cgh-8z-sPI"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="0EF-Mh-alp" secondAttribute="trailing" constant="150" id="eHK-JL-0q6"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="sectionLabel" destination="0EF-Mh-alp" id="dMi-um-5gl"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="nUD-uW-W6l"/>
@@ -104,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474" y="0.0"/>
+            <point key="canvasLocation" x="490" y="0.0"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vvx-gT-6KO">
