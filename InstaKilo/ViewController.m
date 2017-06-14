@@ -12,11 +12,21 @@
 #import "PhotoCollectionReusableView.h"
 
 
+
+typedef enum ImageObjectSortOrder{
+    ImageObjectSortOrderSubject,
+    ImageObjectSortOrderLocation
+} ImageObjectSortOrder;
+
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSArray* photos;
 @property (nonatomic) NSArray *subjects;
+@property (nonatomic) NSString *currentSubject;
+
+@property (nonatomic) ImageObjectSortOrder sort;
+@property (nonatomic) NSArray* sortedData;
 
 @end
 
@@ -26,6 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+
     
     self.subjects = @[@"Synth", @"Bike", @"Cat"];
     
@@ -43,14 +54,32 @@
     
     self.collectionView.allowsMultipleSelection = YES;
 
+    
+    //set default sort to subject
+    self.sort = ImageObjectSortOrderSubject;
+    //call sortData so we can sort based on type of sort
+    self.sortedData = [self sortData];
 }
 
+-(NSArray*)sortData{
+    if (self.sort == ImageObjectSortOrderSubject){
+        return [ImageObject sortImageObjectsBySubject:self.photos];
+    } else {
+        //return [ImageObject sortImageObjectsByLocation:self.photos];
+        return nil;
+    }
+}
+
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return self.subjects.count;
+    //return self.subjects.count;
+    return [self.sortedData count];
+ 
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.photos.count;
+    //return self.photos.count;
+    return [self.sortedData[section] count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -58,10 +87,22 @@
     //we want to deque the instance of the view that;s being passed in, in this case 'collectionView'. So deqeu it
     PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell" forIndexPath:indexPath];
     
-    //no need for loop since this function is called as many times as there are items in array.count
-    ImageObject *imageObject = self.photos[indexPath.row];
- 
+    //if current subject is synth then check and display only synth
+    //if current subject is cat then display only cat
+    
+    //ImageObject *imageObject = self.photos[indexPath.row];
+    
+    NSLog(@"sorted array count: %lu", (unsigned long)self.sortedData.count);
+    
+    ImageObject *imageObject = self.sortedData[indexPath.section][indexPath.row];
+    
     cell.imageViewCell.image = imageObject.image;
+
+    
+    //no need for loop since this function is called as many times as there are items in array.count
+  
+ 
+   // cell.imageViewCell.image = imageObject.image;
     
     return cell;
 }
@@ -75,6 +116,8 @@
         
         PhotoCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
         //NSString *title = [[NSString alloc]initWithFormat:@"Recipe Group #%li", indexPath.section + 1];
+        
+        //self.currentSubject = [self.subjects objectAtIndex:indexPath.section];
         
     
         NSLog(@"indexPath: %@ row: %ld", indexPath, (long)indexPath.section);
